@@ -20,8 +20,8 @@ mongoose.connect(host, function(error){
         console.log("connection successful");
 }); // connect to our database
 
-// Allow use of bear model
-//var Bear = require('./app/models/bear');
+// Allow use of poll model
+var Poll = require('./app/models/poll');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -33,9 +33,46 @@ var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
+var router = express.Router();              // get an instance of the express Router
 
-// ROUTES WILL BE ADDED HERE
+// middleware to use for all requests
+router.use(function(req, res, next) {
+    // do logging
+    console.log('Something is happening.');
+    next(); // make sure we go to the next routes and don't stop here
+});
 
+// on routes that end in /polls
+// ----------------------------------------------------
+router.route('/polls')
+
+    // get all the polls (accessed at GET http://localhost:8080/api/polls)
+    .get(function(req, res) {
+      Poll.find(function(err, polls) {
+        if (err)
+          res.send(err);
+
+          res.json(polls);
+      });
+    })
+
+    // create a poll (accessed at POST http://localhost:8080/api/polls)
+    .post(function(req, res) {
+      var poll = new Poll();      // create a new instance of the Poll model
+      poll.question = req.body.question;  // set the poll question (comes from the request)
+
+      // save the poll and check for errors
+      poll.save(function(err) {
+        if (err)
+          res.send(err);
+
+          res.json({ message: 'Poll created!' });
+      });
+    });
+
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /api
+app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
