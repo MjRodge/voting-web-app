@@ -11,4 +11,4 @@ var PollSchema = new Schema({
   answers: [AnswerSchema]
 });
 
-module.exports = mongoose.model('Bear', BearSchema);
+module.exports = mongoose.model('Poll', PollSchema);
