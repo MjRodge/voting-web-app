@@ -8,9 +8,13 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 
+// Configure dotenv package to bring in DB location
+require('dotenv').config();
+var host = process.env.DB_HOST;
+
 // Connect to mLab database
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/voting_app', function(error){
+mongoose.connect(host, function(error){
     if(error) console.log(error);
 
         console.log("connection successful");
