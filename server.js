@@ -68,7 +68,32 @@ router.route('/polls')
 
           res.json({ message: 'Poll created!' });
       });
+});
+
+// on routes that end in /bears/:bear_id
+// ----------------------------------------------------
+router.route('/polls/:poll_id')
+
+    // get the poll with that id (accessed at GET http://localhost:8080/api/polls/:poll_id)
+    .get(function(req, res) {
+      Poll.findById(req.params.poll_id, function(err, poll) {
+        if (err)
+          res.send(err);
+        res.json(poll);
+      });
+    })
+
+    // delete the poll with this id (accessed at DELETE http://localhost:8080/api/polls/:poll_id)
+    .delete(function(req, res) {
+    Poll.remove({
+      _id: req.params.poll_id
+    }, function(err, poll) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'Successfully deleted' });
     });
+});
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
