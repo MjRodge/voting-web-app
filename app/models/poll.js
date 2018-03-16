@@ -1,14 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var AnswerSchema = new Schema({
-  answer: String,
-  votes: Number
-});
-
 var PollSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   question: String,
-  answers: [AnswerSchema]
+  answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }]
 });
 
 module.exports = mongoose.model('Poll', PollSchema);

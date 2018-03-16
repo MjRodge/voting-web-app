@@ -20,8 +20,9 @@ mongoose.connect(host, function(error){
         console.log("connection successful");
 }); // connect to our database
 
-// Allow use of poll model
+// Allow use of poll and answer model
 var Poll = require('./app/models/poll');
+var Answer = require('./app/models/answer');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -70,7 +71,7 @@ router.route('/polls')
       });
 });
 
-// on routes that end in /bears/:bear_id
+// on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
 
@@ -94,6 +95,35 @@ router.route('/polls/:poll_id')
       res.json({ message: 'Successfully deleted' });
     });
 });
+
+// on routes that end in /polls/:poll_id/add
+// ----------------------------------------------------
+router.route('/polls/:poll_id/add')
+
+    // add answers to an existing poll (accessed at POST http://localhost:8080/api/polls/:poll_id/add)
+    .post(function(req, res) {
+      var answer = new Answer(); // Create new instance of answer
+      answer.answer = req.body.answer; // Set answer text (from request body)
+
+      answer.save(function(err) { // Save answer
+        if (err)
+          res.send(err);
+
+        Poll.findById(req.params.poll_id, function(err, poll) {
+          if (err)
+            res.send(err);
+
+          poll.answers.push(answer._id); // Reference answer in poll
+
+          poll.save(function(err) {
+            if (err)
+              res.send(err);
+
+            res.json({ message: 'Successfully added answer' });
+          });
+        });
+      });
+    });
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
