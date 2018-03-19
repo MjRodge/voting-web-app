@@ -71,6 +71,19 @@ router.route('/polls')
       });
 });
 
+// on routes that end in /answers
+// ----------------------------------------------------
+router.route('/answers')
+
+    // get all the answers (accessed at GET http://localhost:8080/api/polls)
+    .get(function(req, res) { // TEST ROUTE
+      Answer.find(function(err, answers) {
+        if (err)
+          res.send(err);
+
+          res.json(answers);
+      });
+    });
 // on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
@@ -122,6 +135,22 @@ router.route('/polls/:poll_id/add')
             res.json({ message: 'Successfully added answer' });
           });
         });
+      });
+    });
+
+// on routes that end in /polls/:poll_id/all
+// ----------------------------------------------------
+router.route('/polls/:poll_id/all')
+
+    // get all answers for poll with that id (accessed at GET http://localhost:8080/api/polls/:poll_id)
+    .get(function(req, res) {
+      Poll.findById(req.params.poll_id) // Select poll requested by user
+        .populate('answers') // Find all answers referencing specific poll
+        .exec(function(err, answers) {
+        if (err)
+          res.send(err);
+
+        res.json(answers);
       });
     });
 
