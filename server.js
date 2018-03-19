@@ -154,6 +154,26 @@ router.route('/polls/:poll_id/all')
       });
     });
 
+// on routes that end in /polls/:poll_id/:answer_id/vote
+// ----------------------------------------------------
+router.route('/polls/:poll_id/:answer_id/vote')
+
+    .put(function (req, res) {
+      Answer.findById(req.params.answer_id, function(err, answer) {
+        if (err)
+          res.send(err);
+
+        answer.votes += 1; // Add one to vote tally
+
+        answer.save(function(err) {
+          if (err)
+            res.send(err);
+
+          res.json({ message: 'Vote saved' });
+        });
+      });
+    });
+
 // on routes that end in /answers/:answer_id
 // ----------------------------------------------------
 router.route('/answers/:answer_id')
