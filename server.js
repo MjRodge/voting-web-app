@@ -154,6 +154,22 @@ router.route('/polls/:poll_id/all')
       });
     });
 
+// on routes that end in /answers/:answer_id
+// ----------------------------------------------------
+router.route('/answers/:answer_id')
+
+    // delete the answer with this id (accessed at DELETE http://localhost:8080/api/answers/:answer_id)
+    .delete(function(req, res) {
+      Answer.remove({
+        _id: req.params.answer_id
+      }, function(err, answer) {
+        if (err)
+          res.send(err);
+
+        res.json({ message: 'Successfully deleted' });
+      });
+    });
+
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
