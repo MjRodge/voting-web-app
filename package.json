@@ -5,6 +5,8 @@
     "body-parser": "~1.0.1",
     "dotenv": "^5.0.1",
     "express": "~4.0.0",
-    "mongoose": "~3.6.13"
+    "mongoose": "~3.6.13",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }
