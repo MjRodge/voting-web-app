@@ -86,10 +86,7 @@ router.route('/answers')
           res.json(answers);
       });
     });
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/front-end
 // on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
