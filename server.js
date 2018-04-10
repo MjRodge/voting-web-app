@@ -39,6 +39,8 @@ var router = express.Router();              // get an instance of the express Ro
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
+    res.header("Access-Control-Allow-Origin", "*"); // Added to resolve CORS issue
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
@@ -84,6 +86,10 @@ router.route('/answers')
           res.json(answers);
       });
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/front-end
 // on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
