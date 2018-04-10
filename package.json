@@ -9,5 +9,11 @@
     "dotenv": "^5.0.1",
     "express": "~4.0.0",
     "mongoose": "~5.0.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
