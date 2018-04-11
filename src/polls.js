@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Answers from './answers';
+import AddAnswerModal from './addAnswer';
 
 class Polls extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Polls extends React.Component {
           return (
             <div key={i} id={poll._id}>
               <h2>{poll.question}</h2>
+              <AddAnswerModal pollSelected={poll._id} />
               <Answers pollSelected={poll._id} />
             </div>
           )

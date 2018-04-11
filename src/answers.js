@@ -20,7 +20,7 @@ class Answers extends React.Component {
 
   render() {
     return (
-      <div id="answers">
+      <div className="answers">
         {this.state.answers.map(function(ans, i) {
           return (
             <div key={i} id={ans._id}>
