@@ -62,8 +62,8 @@ router.route('/polls')
     // create a poll (accessed at POST http://localhost:8080/api/polls)
     .post(function(req, res) {
       var poll = new Poll();      // create a new instance of the Poll model
+      poll._id = new mongoose.mongo.ObjectId();
       poll.question = req.body.question;  // set the poll question (comes from the request)
-
       // save the poll and check for errors
       poll.save(function(err) {
         if (err)
@@ -86,7 +86,6 @@ router.route('/answers')
           res.json(answers);
       });
     });
-
 // on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
