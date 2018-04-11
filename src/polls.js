@@ -5,21 +5,29 @@ class Polls extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        poll: [],
+        polls: [],
       };
       this.apiLink = "http://127.0.0.1:8080/api/polls/";
   }
 
   componentDidMount() {
     axios.get(this.apiLink)
-      .then(response => this.setState({poll: response.data[0].question}))
+      .then(response => {
+        this.setState({polls: response.data})
+      })
       .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div id="polls">
-        <h2>{this.state.poll}</h2>
+        {this.state.polls.map(function(poll, i) {
+          return (
+            <h2 key={i} id={poll._id}>
+              {poll.question}
+            </h2>
+          )
+        }, this)}
       </div>
     );
   }
