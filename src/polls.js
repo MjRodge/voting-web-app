@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Answers from './answers';
 
 class Polls extends React.Component {
   constructor(props) {
@@ -23,9 +24,10 @@ class Polls extends React.Component {
       <div id="polls">
         {this.state.polls.map(function(poll, i) {
           return (
-            <h2 key={i} id={poll._id}>
-              {poll.question}
-            </h2>
+            <div key={i} id={poll._id}>
+              <h2>{poll.question}</h2>
+              <Answers pollSelected={poll._id} />
+            </div>
           )
         }, this)}
       </div>
