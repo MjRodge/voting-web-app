@@ -45,7 +45,6 @@ class AddAnswerModal extends React.Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
-          <p>{this.state.answer} added to options.</p>
         </Modal>
       </div>
     );

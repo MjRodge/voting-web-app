@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Vote from './vote';
 
 class Answers extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Answers extends React.Component {
           return (
             <div key={i} id={ans._id}>
               <h3>{ans.answer}</h3>
+              <Vote pollSelected={this.props.pollSelected} answerSelected={ans._id} />
               <h4>{ans.votes}</h4>
             </div>
           )
