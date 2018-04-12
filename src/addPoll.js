@@ -2,15 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
 
-class AddAnswerModal extends React.Component {
+class AddPollModal extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
         open: false,
-        answer: '',
+        poll: '',
       };
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.apiLink = "http://127.0.0.1:8080/api/polls/"+this.props.pollSelected+"/add";
+      this.apiLink = "http://127.0.0.1:8080/api/polls/";
   }
 
   onOpenModal = () => {
@@ -22,8 +22,8 @@ class AddAnswerModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({answer : this.element.value });
-    axios.post(this.apiLink, {answer: this.element.value})
+    this.setState({poll : this.element.value });
+    axios.post(this.apiLink, {question: this.element.value})
       .then(function(response){
         console.log('saved successfully')
       });
@@ -32,16 +32,16 @@ class AddAnswerModal extends React.Component {
   render() {
     const {open} = this.state;
     return (
-      <div className="add-answer">
+      <div className="add-poll">
         <button className="btn btn-action" onClick={this.onOpenModal}>
-          Add Option
+          Add Poll
         </button>
         <Modal open={open} onClose={this.onCloseModal} little>
-          <h2>Add Option to Poll</h2>
+          <h2>Add A Poll</h2>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="Answer">
-              Answer:
-              <input type="text" name="answer" placeholder="Answer" ref={el => this.element = el} />
+            <label htmlFor="Poll">
+              Poll:
+              <input type="text" name="poll" placeholder="Question" ref={el => this.element = el} />
             </label>
             <input type="submit" value="Submit" />
           </form>
@@ -51,4 +51,4 @@ class AddAnswerModal extends React.Component {
   }
 }
 
-export default AddAnswerModal;
+export default AddPollModal;

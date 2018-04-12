@@ -41,6 +41,7 @@ router.use(function(req, res, next) {
     // do logging
     res.header("Access-Control-Allow-Origin", "*"); // Added to resolve CORS issue
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
@@ -73,19 +74,6 @@ router.route('/polls')
       });
 });
 
-// on routes that end in /answers
-// ----------------------------------------------------
-router.route('/answers')
-
-    // get all the answers (accessed at GET http://localhost:8080/api/polls)
-    .get(function(req, res) { // TEST ROUTE
-      Answer.find(function(err, answers) {
-        if (err)
-          res.send(err);
-
-          res.json(answers);
-      });
-    });
 // on routes that end in /polls/:poll_id
 // ----------------------------------------------------
 router.route('/polls/:poll_id')
@@ -176,11 +164,11 @@ router.route('/polls/:poll_id/:answer_id/vote')
       });
     });
 
-// on routes that end in /answers/:answer_id
+// on routes that end in /polls/:poll_id/:answer_id
 // ----------------------------------------------------
-router.route('/answers/:answer_id')
+router.route('/polls/:poll_id/:answer_id')
 
-    // delete the answer with this id (accessed at DELETE http://localhost:8080/api/answers/:answer_id)
+    // delete the answer with this id (accessed at DELETE http://localhost:8080/api/polls/:poll_id/:answer_id)
     .delete(function(req, res) {
       Answer.remove({
         _id: req.params.answer_id
