@@ -25,7 +25,8 @@ class AddAnswerModal extends React.Component {
     this.setState({answer : this.element.value });
     axios.post(this.apiLink, {answer: this.element.value})
       .then(function(response){
-        console.log('saved successfully')
+        console.log('saved successfully');
+        window.location.reload();
       });
   }
 

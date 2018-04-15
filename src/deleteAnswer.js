@@ -11,7 +11,8 @@ class DeleteAnswer extends React.Component {
   handleClick() {
     axios.delete(this.apiLink)
       .then(function(response){
-        console.log('successfully deleted')
+        console.log('successfully deleted');
+        window.location.reload();
       });
   }
 
