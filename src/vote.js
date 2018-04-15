@@ -11,13 +11,16 @@ class Vote extends React.Component {
   handleClick() {
     axios.put(this.apiLink)
       .then(function(response){
-        console.log('successfully voted')
+        console.log('successfully voted');
+        window.location.reload(); //Forced reload of window upon voting - find different way to do
       });
   }
 
   render() {
     return (
-      <button onClick={this.handleClick}>Vote</button>
+        <button onClick={this.handleClick}>
+          Vote
+        </button>
     );
   }
 }

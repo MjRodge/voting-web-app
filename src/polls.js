@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Answers from './answers';
-import AddAnswerModal from './addAnswer';
+import { Link } from 'react-router-dom';
+import AddPollModal from './addPoll';
 
 class Polls extends React.Component {
   constructor(props) {
@@ -23,13 +23,14 @@ class Polls extends React.Component {
   render() {
     return (
       <div id="polls">
+        <AddPollModal />
         {this.state.polls.map(function(poll, i) {
           return (
-            <div key={i} id={poll._id}>
-              <h2>{poll.question}</h2>
-              <AddAnswerModal pollSelected={poll._id} />
-              <Answers pollSelected={poll._id} />
-            </div>
+            <Link to={"/polls/"+poll._id} key={i}>
+              <div id={poll._id} className="poll-question">
+                <h2>{poll.question}</h2>
+              </div>
+            </Link>
           )
         }, this)}
       </div>

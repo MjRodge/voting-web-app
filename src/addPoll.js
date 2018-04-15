@@ -26,6 +26,7 @@ class AddPollModal extends React.Component {
     axios.post(this.apiLink, {question: this.element.value})
       .then(function(response){
         console.log('saved successfully')
+        window.location.reload();
       });
   }
 

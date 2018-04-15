@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Polls from './polls';
-import AddPollModal from './addPoll';
+import PollResult from './pollResult';
+import Header from './header';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>Hello World!</h1>
-        <AddPollModal />
-        <Polls />
-      </div>
+      <Router>
+        <div>
+          <Route path="/" component={Header} />
+          <Route exact path="/polls" component={Polls} />
+          <Route path="/polls/:pollId" component={PollResult} />
+        </div>
+      </Router>
     );
   }
 }
