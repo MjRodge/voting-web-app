@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AddAnswerModal from './addAnswer';
 import Vote from './vote';
-import DeleteAnswer from './deleteAnswer'
+import DeleteAnswer from './deleteAnswer';
+import { Doughnut } from 'react-chartjs-2';
 
 class PollResult extends Component {
   constructor(props) {
       super(props);
       this.state = {
         poll: [],
-        answers: []
+        answers: [],
+        data: {}
       };
       this.apiLink = "http://127.0.0.1:8080/api/polls/"+this.props.match.params.pollId+"/all";
   }
@@ -17,8 +19,30 @@ class PollResult extends Component {
   componentDidMount() {
     axios.get(this.apiLink)
       .then(response => {
-        this.setState({poll: response.data, answers: response.data.answers})
-      })
+        this.setState({poll: response.data, answers: response.data.answers});
+        const answers = response.data.answers;
+        let labels = []; //array to hold all answer options
+        let votes = []; //array to hold votes for each option
+        answers.forEach((data) => { //loop through all returned answers for options and votes
+          labels.push(data.answer);
+          votes.push(data.votes);
+        });
+        this.setState({
+          data: {
+            labels: labels, //options array assigned to data object
+            datasets: [
+              {
+                label: 'Results',
+                data: votes, //votes array assigned to data object
+                backgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCE56'
+                ]
+              }]
+            }
+          })
+        })
       .catch(err => console.log(err))
   }
 
@@ -26,6 +50,9 @@ class PollResult extends Component {
     return (
         <div>
           <h1>{this.state.poll.question}</h1>
+          <div>
+            <Doughnut data={this.state.data} />
+          </div>
           <div className="answers">
             {this.state.answers.map(function(ans, i) {
               return (
