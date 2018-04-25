@@ -8,9 +8,6 @@ class Header extends Component {
           <Link to="/polls">
             <h1>Hello World!</h1>
           </Link>
-          <Link to="/login">
-            <h2>Sign Up/Log In</h2>
-          </Link>
           <h2>(temp component)</h2>
         </div>
     );
