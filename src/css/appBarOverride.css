@@ -1,0 +1,10 @@
+.app-bar-override {
+  background-color: #00796b !important;
+}
+
+.app-bar-button {
+  background-color: #ffc107 !important;
+}
+.app-bar-button:hover {
+  background-color: #ffa000 !important;
+}

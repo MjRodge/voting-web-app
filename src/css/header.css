@@ -1,0 +1,15 @@
+#header {
+  background-color: #009688;
+}
+
+#header h1 {
+    color: #ffffff;
+    padding: 18px;
+    font-size: 2.5em;
+    text-align: center;
+}
+@media screen and (min-width: 786px) {
+  #header h1 {
+    font-size: 5vw;
+  }
+}

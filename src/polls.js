@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddPollModal from './addPoll';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import './css/appBarOverride.css';
 
 class Polls extends React.Component {
   constructor(props) {
@@ -23,6 +26,12 @@ class Polls extends React.Component {
   render() {
     return (
       <div id="polls">
+        <AppBar
+          title="All Polls"
+          showMenuIconButton={false}
+          iconElementRight={<FlatButton label="Add Poll" className="app-bar-button" />}
+          className="app-bar-override"
+        />
         <AddPollModal />
         {this.state.polls.map(function(poll, i) {
           return (
