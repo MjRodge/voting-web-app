@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AddAnswerModal from './addAnswer';
+import AddPollModal from './addPoll';
 //import DeleteAnswer from './deleteAnswer';
 import { Doughnut } from 'react-chartjs-2';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import './css/appBarOverride.css';
 
 class PollResult extends Component {
@@ -74,16 +73,13 @@ class PollResult extends Component {
           <AppBar
             title={this.state.poll.question}
             showMenuIconButton={false}
-            iconElementRight={<FlatButton label="Add Poll" className="app-bar-button" />}
+            iconElementRight={<AddPollModal />}
             className="app-bar-override"
           />
           <div>
             <Doughnut data={this.state.data} />
           </div>
           <div className="answers">
-            <FloatingActionButton>
-              <ContentAdd />
-            </FloatingActionButton>
             <AddAnswerModal pollSelected={this.props.match.params.pollId} />
             <RadioButtonGroup name="answers" onChange={this.ansSelect}>
               {this.state.answers.map(function(ans, i) {
