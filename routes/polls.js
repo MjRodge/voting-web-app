@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 // Allow use of poll and answer model
 var Poll = require('../app/models/poll');
 var Answer = require('../app/models/answer');
