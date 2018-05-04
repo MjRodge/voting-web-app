@@ -76,25 +76,27 @@ class PollResult extends Component {
             iconElementRight={<AddPollModal />}
             className="app-bar-override"
           />
-          <div>
-            <Doughnut data={this.state.data} />
-          </div>
-          <div className="answers">
-            <AddAnswerModal pollSelected={this.props.match.params.pollId} />
-            <RadioButtonGroup name="answers" onChange={this.ansSelect}>
-              {this.state.answers.map(function(ans, i) {
-                return (
-                  <RadioButton value={ans._id} label={ans.answer+" ("+ans.votes+" votes)"} key={i}/>
-                )
-              }, this)}
-            </RadioButtonGroup>
-            {this.state.hasSelected ? ( //conditional to only show vote button when an answer is selected
-              <RaisedButton onClick={this.handleVote}>
-                Vote
-              </RaisedButton>
-            ) : (
-              <p>Select to Continue</p>
-            )}
+          <div id="results-container">
+            <div className="results-chart">
+              <Doughnut data={this.state.data} />
+            </div>
+            <div className="answers">
+              <AddAnswerModal pollSelected={this.props.match.params.pollId} />
+              <RadioButtonGroup name="answers" onChange={this.ansSelect}>
+                {this.state.answers.map(function(ans, i) {
+                  return (
+                    <RadioButton value={ans._id} label={ans.answer+" ("+ans.votes+" votes)"} key={i}/>
+                  )
+                }, this)}
+              </RadioButtonGroup>
+              {this.state.hasSelected ? ( //conditional to only show vote button when an answer is selected
+                <RaisedButton onClick={this.handleVote}>
+                  Vote
+                </RaisedButton>
+              ) : (
+                <p>Select to Continue</p>
+              )}
+            </div>
           </div>
         </div>
     );

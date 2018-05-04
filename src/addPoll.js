@@ -43,15 +43,16 @@ class AddPollModal extends React.Component {
           <h2>Add A Poll</h2>
           <form onSubmit={this.handleSubmit}>
             <TextField
+              className="modal-text"
               value={this.state.poll}
               onChange={e =>this.setState({ poll: e.target.value})}
               hintText="Poll Question"
             />
-            <FlatButton onClick={this.onCloseModal}>
-              Cancel
-            </FlatButton>
-            <FlatButton type="submit" className="modal-button">
+            <FlatButton type="submit" className="modal-button-primary">
               Submit
+            </FlatButton>
+            <FlatButton onClick={this.onCloseModal} className="modal-button">
+              Cancel
             </FlatButton>
           </form>
         </Modal>
