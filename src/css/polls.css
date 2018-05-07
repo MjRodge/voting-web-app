@@ -1,0 +1,19 @@
+.poll-paper {
+  margin: 12px;
+  text-align: center;
+}
+.poll-question {
+  padding: 15px;
+}
+.poll-question:hover {
+  background-color: #ffc107;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 800px) {
+  .poll-paper {
+    width: 80%;
+    margin: auto;
+    margin-top: 12px;
+  }
+}

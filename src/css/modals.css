@@ -20,6 +20,11 @@
   min-width: 280px;
 }
 
+.add-answer {
+  margin: 12px;
+  float: right;
+}
+
 @media screen and (min-width: 470px) {
   .Modal-modal-0-1-3 {
     width: 80%;

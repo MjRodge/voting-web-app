@@ -3,7 +3,6 @@ import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import './css/modals.css';
@@ -39,7 +38,7 @@ class AddAnswerModal extends React.Component {
     const {open} = this.state;
     return (
       <div className="add-answer">
-        <FloatingActionButton mini="true" onClick={this.onOpenModal}>
+        <FloatingActionButton backgroundColor="#009688" onClick={this.onOpenModal}>
           <ContentAdd />
         </FloatingActionButton>
         <Modal open={open} onClose={this.onCloseModal} little>

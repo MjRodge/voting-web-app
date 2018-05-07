@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddPollModal from './addPoll';
 import AppBar from 'material-ui/AppBar';
+import Paper from 'material-ui/Paper';
 import './css/appBarOverride.css';
+import './css/polls.css';
 
 class Polls extends React.Component {
   constructor(props) {
@@ -34,9 +36,11 @@ class Polls extends React.Component {
         {this.state.polls.map(function(poll, i) {
           return (
             <Link to={"/polls/"+poll._id} key={i}>
+              <Paper className="poll-paper" zDepth={2}>
               <div id={poll._id} className="poll-question">
                 <h2>{poll.question}</h2>
               </div>
+              </Paper>
             </Link>
           )
         }, this)}
