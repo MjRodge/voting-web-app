@@ -91,11 +91,13 @@ class About extends Component {
                   <li>Added header, footer and about page components.</li>
                   <li>Prepared for initial push to Heroku server.</li>
                 </ol>
+                <p><a href="https://github.com/MjRodge/voting-web-app/pull/12" target="_blank" rel="noopener noreferrer">Git repository at this stage</a></p>
                 <h3>To-do:</h3>
                 <ul>
                   <li>Add Mongoose schema for user accounts.</li>
                   <li>Create login routes for user authentication.</li>
                   <li>Protect polling routes behind authentication to meet project brief.</li>
+                  <li>Add validation to user entered information.</li>
                 </ul>
               </div>
             </SwipeableViews>
