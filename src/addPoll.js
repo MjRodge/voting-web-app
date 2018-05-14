@@ -29,7 +29,7 @@ class AddPollModal extends React.Component {
     axios.post(this.apiLink, {question: this.state.poll})
       .then(function(response){
         console.log('saved successfully');
-        window.location.assign("/polls");
+        window.location.assign("/");
       });
   }
 
