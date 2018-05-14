@@ -11,16 +11,16 @@ class Footer extends Component {
             <Link to={"/about"}>
               <FlatButton label="About" className="footer-button"/>
             </Link>
-            <a href="https://github.com/MjRodge/voting-web-app" target="_blank">
+            <a href="https://github.com/MjRodge/voting-web-app" target="_blank" rel="noopener noreferrer">
               <FlatButton label="GitHub" className="footer-button"/>
             </a>
           </div>
           <div id="footer-text">
-            <p>Designed and Implemented by <a href="https://mjrodge.me" target="_blank" className="footer-link">MjRodge</a></p>
+            <p>Designed and Implemented by <a href="https://mjrodge.me" target="_blank" className="footer-link" rel="noopener noreferrer">MjRodge</a></p>
             <p>Built using:</p>
             <p>
-              <i className="fab fa-react fa-2x"></i>
-              <i className="fab fa-node-js fa-2x"></i>
+              <i className="fab fa-react fa-2x" title="React"></i>
+              <i className="fab fa-node-js fa-2x" title="NodeJS"></i>
             </p>
           </div>
         </div>
