@@ -15,7 +15,7 @@ class App extends Component {
         <Router>
           <div>
             <Route path="/" component={Header} />
-            <Route exact path="/polls" component={Polls} />
+            <Route exact path="/" component={Polls} />
             <Route path="/polls/:pollId" component={PollResult} />
             <Route path="/about" component={About} />
             <Footer />
