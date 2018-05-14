@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import './css/modals.css';
 
 class AddAnswerModal extends React.Component {
   constructor(props) {
@@ -22,8 +27,7 @@ class AddAnswerModal extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({answer : this.element.value });
-    axios.post(this.apiLink, {answer: this.element.value})
+    axios.post(this.apiLink, {answer: this.state.answer})
       .then(function(response){
         console.log('saved successfully');
         window.location.reload();
@@ -34,17 +38,24 @@ class AddAnswerModal extends React.Component {
     const {open} = this.state;
     return (
       <div className="add-answer">
-        <button className="btn btn-action" onClick={this.onOpenModal}>
-          Add Option
-        </button>
+        <FloatingActionButton backgroundColor="#009688" onClick={this.onOpenModal}>
+          <ContentAdd />
+        </FloatingActionButton>
         <Modal open={open} onClose={this.onCloseModal} little>
-          <h2>Add Option to Poll</h2>
+          <h2>Add Answer to Poll</h2>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="Answer">
-              Answer:
-              <input type="text" name="answer" placeholder="Answer" ref={el => this.element = el} />
-            </label>
-            <input type="submit" value="Submit" />
+            <TextField
+              className="modal-text"
+              value={this.state.answer}
+              onChange={e =>this.setState({ answer: e.target.value})}
+              hintText="Answer Text"
+            />
+            <FlatButton type="submit" className="modal-button-primary">
+              Submit
+            </FlatButton>
+            <FlatButton onClick={this.onCloseModal} className="modal-button">
+              Cancel
+            </FlatButton>
           </form>
         </Modal>
       </div>

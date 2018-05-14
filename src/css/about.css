@@ -1,0 +1,31 @@
+.about-tab {
+  padding: 30px;
+}
+@media screen and (min-width: 800px) {
+  .about-tab {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+.about-tab p {
+  line-height: 1.2;
+  margin: 12px;
+  text-indent: 12px;
+}
+.about-tab ul {
+  margin-left: 43px;
+}
+.about-tab ol {
+  margin-left: 43px;
+}
+.about-tab h3 {
+  margin: 12px;
+}
+.about-tab a {
+  color: #00796b;
+  text-decoration: underline;
+}
+.about-tab a:hover {
+  color: #ffc107;
+}

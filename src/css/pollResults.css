@@ -1,0 +1,20 @@
+#chart {
+  padding: 13px;
+}
+
+.answers {
+  padding: 13px;
+  margin: 20px;
+}
+
+.vote-button {
+  padding: 25px;
+  height: 36px;
+}
+
+@media screen and (min-width: 800px) {
+  #results-container{
+    width: 80%;
+    margin: auto;
+  }
+}

@@ -1,0 +1,16 @@
+.app-bar-override {
+  background-color: #00796b !important;
+  z-index: 0 !important;
+}
+
+.app-bar-button {
+  background-color: #ffc107 !important;
+  color: #ffffff !important;
+}
+.app-bar-button:hover {
+  background-color: #ffa000 !important;
+}
+
+.add-poll {
+  padding-top: 7px;
+}
