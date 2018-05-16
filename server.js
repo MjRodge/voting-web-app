@@ -16,8 +16,8 @@ var cookieParser = require('cookie-parser');
 require('./config/passport')(passport); // pass passport for configuration
 
 // Configure dotenv package to bring in DB location
-require('dotenv').config();
-var host = process.env.DB_HOST;
+//require('dotenv').config();
+var host = process.env.DB_HOST; //uses heroku config vars in production
 
 // Connect to mLab database
 var mongoose = require('mongoose');
