@@ -13,7 +13,7 @@ class Polls extends React.Component {
       this.state = {
         polls: [],
       };
-      this.apiLink = "http://127.0.0.1:8080/api/polls/";
+      this.apiLink = "/api/polls/";
   }
 
   componentDidMount() {
