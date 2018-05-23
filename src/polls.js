@@ -13,7 +13,7 @@ class Polls extends React.Component {
       this.state = {
         polls: [],
       };
-      this.apiLink = "/api/polls/";
+      this.apiLink = "https://mjrodge-voting-app.herokuapp.com/api/polls/";
   }
 
   componentDidMount() {
