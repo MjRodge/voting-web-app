@@ -62,3 +62,8 @@ app.use('/api', pollRoutes);
 // =============================================================================
 app.listen(port);
 console.log('Magic happens on port ' + port);
+//Heroku defaults to .NODE_ENV === production
+//if on Heroku, serve build files
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
+};
