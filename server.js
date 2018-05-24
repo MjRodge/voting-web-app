@@ -54,7 +54,7 @@ var port = process.env.PORT || 8080;        // set our port
 // based on example here https://tylermcginnis.com/react-router-cannot-get-url-refresh/
 // ----------------------------------------------------
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../build/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, '../build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
