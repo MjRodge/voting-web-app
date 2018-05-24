@@ -79,7 +79,7 @@ class PollResult extends Component {
   }
 
   handleVote() {
-    axios.put("http://127.0.0.1:8080/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
+    axios.put("/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
       .then(function(response){
         console.log('successfully voted');
         window.location.reload(); //Forced reload of window upon voting - find different way to do
