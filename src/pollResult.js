@@ -36,7 +36,7 @@ class PollResult extends Component {
         ansKey: [], //array that will hold the ID of answers that can be referenced from table
         selected: [] //answer ID that will be used to
       };
-      this.apiLink = "http://127.0.0.1:8080/api/polls/"+this.props.match.params.pollId+"/all";
+      this.apiLink = "/api/polls/"+this.props.match.params.pollId+"/all";
       this.handleVote = this.handleVote.bind(this);
   }
 

@@ -15,7 +15,7 @@ class AddAnswerModal extends React.Component {
         answer: '',
       };
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.apiLink = "http://127.0.0.1:8080/api/polls/"+this.props.pollSelected+"/add";
+      this.apiLink = "/api/polls/"+this.props.pollSelected+"/add";
   }
 
   onOpenModal = () => {
