@@ -50,6 +50,17 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 var port = process.env.PORT || 8080;        // set our port
 
+// catch all route to serve pages through react Router
+// based on example here https://tylermcginnis.com/react-router-cannot-get-url-refresh/
+// ----------------------------------------------------
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 // ROUTES FOR OUR API
 // =============================================================================
 require('./routes/user.js')(app, passport);
