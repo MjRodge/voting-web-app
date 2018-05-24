@@ -147,4 +147,16 @@ router.route('/polls/:poll_id/:answer_id')
     });
   });
 
+
+// catch all route to serve pages through react Router
+// based on example here https://tylermcginnis.com/react-router-cannot-get-url-refresh/
+// ----------------------------------------------------
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 module.exports = router;
