@@ -66,8 +66,8 @@ app.use('/api', pollRoutes);
 // a script tag to your application's JavaScript file(s).
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', function (request, response){
-  response.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
+app.get('/*', function (request, response){
+  response.sendFile(path.join(__dirname, 'build', 'index.html'), function(err) {
     if (err) {
       response.status(500).send(err)
     }
