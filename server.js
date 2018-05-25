@@ -60,18 +60,6 @@ var pollRoutes = require('./routes/polls.js');
 // all of our poll routes will be prefixed with /api
 app.use('/api', pollRoutes);
 
-// SERVING HISTORY FOR REACT ROUTER
-// =============================================================================
-// handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 
 // START THE SERVER
 // =============================================================================
