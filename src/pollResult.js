@@ -82,7 +82,7 @@ class PollResult extends Component {
     axios.put("/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
       .then(function(response){
         console.log('successfully voted');
-        window.location.reload(); //Forced reload of window upon voting - find different way to do
+        this.props.history.push('/polls/'+this.state.poll._id);
       });
   }
 
