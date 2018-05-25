@@ -67,7 +67,11 @@ app.use('/api', pollRoutes);
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  response.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      response.status(500).send(err)
+    }
+  })
 });
 
 
