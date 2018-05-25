@@ -64,15 +64,13 @@ app.use('/api', pollRoutes);
 // =============================================================================
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/*', function (request, response){
-  response.sendFile(path.join(__dirname, 'build', 'index.html'), function(err) {
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
     if (err) {
-      response.status(500).send(err)
+      res.status(500).send(err)
     }
   })
-});
+})
 
 
 // START THE SERVER
