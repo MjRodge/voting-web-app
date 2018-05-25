@@ -12,6 +12,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
+var path = require('path');
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -63,11 +64,13 @@ app.use('/api', pollRoutes);
 // =============================================================================
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 
 // START THE SERVER
