@@ -35,13 +35,14 @@ class PollResult extends Component {
         answers: [],
         data: {}, //axios get request will populate this for use in chartjs
         ansKey: [], //array that will hold the ID of answers that can be referenced from table
-        selected: [] //answer ID that will be used to
+        selected: [], //answer ID that will be used to
+        hasVoted: false, //control variable prevent multiple votes
       };
       this.apiLink = "/api/polls/"+this.props.match.params.pollId+"/all";
       this.handleVote = this.handleVote.bind(this);
   }
 
-  componentDidMount() {
+  fetchAPI() {
     axios.get(this.apiLink)
       .then(response => {
         this.setState({poll: response.data, answers: response.data.answers});
@@ -80,11 +81,20 @@ class PollResult extends Component {
   }
 
   handleVote() {
-    axios.put("/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
+    axios.put("http://localhost:8080/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
       .then((response) => {
         console.log('successfully voted');
-        this.props.history.push('/polls/'+this.state.poll._id);
+        this.fetchAPI();
+        this.setState({hasVoted: true}) //disable vote button after placing vote
       });
+  }
+
+  answerAdded = () => {
+    this.fetchAPI()
+  }
+
+  componentDidMount() {
+    this.fetchAPI()
   }
 
   render() {
@@ -127,16 +137,30 @@ class PollResult extends Component {
                   </TableBody>
                 </Table>
                 <div id="answer-buttons">
-                  <AddAnswerModal pollSelected={this.props.match.params.pollId} />
+                  <AddAnswerModal pollSelected={this.props.match.params.pollId} addAnswer={this.answerAdded}/>
                   <div className="vote-button">
-                    {this.state.hasSelected ? ( //conditional to only show vote button when an answer is selected
+                    {this.state.hasVoted ? ( //button will be disabled once a vote has been placed
                       <RaisedButton
                         backgroundColor="#ffc107"
+                        disabled={true}
                         onClick={this.handleVote}>
                           Vote
-                      </RaisedButton>
-                    ) : (
-                      <p>Select to Continue</p>
+                        </RaisedButton>
+                      ) : (
+                      this.state.hasSelected ? ( //conditional to only show vote button when an answer is selected
+                        <RaisedButton
+                          backgroundColor="#ffc107"
+                          onClick={this.handleVote}>
+                            Vote
+                          </RaisedButton>
+                        ) : (
+                          <RaisedButton
+                            backgroundColor="#ffc107"
+                            disabled={true}
+                            onClick={this.handleVote}>
+                              Vote
+                            </RaisedButton>
+                        )
                     )}
                   </div>
                 </div>
