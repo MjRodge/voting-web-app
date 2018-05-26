@@ -80,7 +80,7 @@ class PollResult extends Component {
 
   handleVote() {
     axios.put("/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
-      .then(function(response){
+      .then((response) => {
         console.log('successfully voted');
         this.props.history.push('/polls/'+this.state.poll._id);
       });
