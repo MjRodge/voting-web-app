@@ -31,7 +31,8 @@ class AddAnswerModal extends React.Component {
     axios.post(this.apiLink, {answer: this.state.answer})
       .then((response) => {
         console.log('saved successfully');
-        this.props.history.push('/polls/'+this.props.pollSelected);
+        this.onCloseModal();
+        this.props.addAnswer();
       });
   }
 
