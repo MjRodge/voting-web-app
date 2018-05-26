@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import { withRouter } from "react-router-dom";
 import './css/modals.css';
 
 class AddAnswerModal extends React.Component {
@@ -63,4 +64,4 @@ class AddAnswerModal extends React.Component {
   }
 }
 
-export default AddAnswerModal;
+export default withRouter(AddAnswerModal);

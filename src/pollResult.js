@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import axios from 'axios';
 import AddAnswerModal from './addAnswer';
 import AddPollModal from './addPoll';
@@ -147,4 +148,4 @@ class PollResult extends Component {
   }
 }
 
-export default PollResult;
+export default withRouter(PollResult);
