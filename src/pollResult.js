@@ -81,7 +81,7 @@ class PollResult extends Component {
   }
 
   handleVote() {
-    axios.put("http://localhost:8080/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
+    axios.put("/api/polls/"+this.state.poll._id+"/"+this.state.selected+"/vote")
       .then((response) => {
         console.log('successfully voted');
         this.fetchAPI();
