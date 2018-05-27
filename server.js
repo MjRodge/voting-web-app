@@ -60,6 +60,13 @@ var pollRoutes = require('./routes/polls.js');
 // all of our poll routes will be prefixed with /api
 app.use('/api', pollRoutes);
 
+//serve all routes through index page, allowing react-router to take over
+app.use('/static', express.static(__dirname + '/static'));
+
+app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
+
 
 // START THE SERVER
 // =============================================================================
