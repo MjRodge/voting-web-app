@@ -4,8 +4,9 @@
 // =============================================================================
 
 // call the packages we need
-var express = require('express');        // call express
-var app = express();                 // define our app using express
+var express = require('express'); // call express
+var app = express(); // define our app using express
+var serveStatic  = require('serve-static'); //used to serve static index page
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -61,11 +62,7 @@ var pollRoutes = require('./routes/polls.js');
 app.use('/api', pollRoutes);
 
 //serve all routes through index page, allowing react-router to take over
-app.use('/static', express.static(__dirname + '/static'));
-
-app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
+app.use(serveStatic('build', {'index': ['index.html', 'index.htm']}));
 
 
 // START THE SERVER
